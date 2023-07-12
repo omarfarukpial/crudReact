@@ -3,9 +3,9 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function DeleteBtn () {
     return (
-        <div className="p-4 text-red-800">
+        <button className="text-red-500">
             <FontAwesomeIcon icon={faTrash} size="xl"/>
-        </div>
+        </button>
         
     );
 }
