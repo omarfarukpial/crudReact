@@ -32,9 +32,7 @@ export default async function PostList() {
                     <Link href={`/editPost/${p._id}`}>
                         <EditBtn/>
                     </Link>
-                    <Link href={`/deletePost/${p._id}`}>
-                        <DeleteBtn/>
-                    </Link>
+                    <DeleteBtn id = {p._id}/>
                 </div>
             </div>
             ))}
