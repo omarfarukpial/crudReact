@@ -1,32 +1,30 @@
+import EditPostPage from "@/components/EditPostPage";
 
-
-const getPostsById = async () => {
+const getPostsById = async (id) => {
     try {
-        const res = await fetch(`http://localhost:3000/api/posts/${id}`)
-    } catch (error) {
+        const res = await fetch(`http://localhost:3000/api/posts/${id}`, { 
+            cache: 'no-store',
+        });
 
+        if (!res.ok) throw new Error("Failed to fetch data");
+
+        return res.json();
+    } catch (error) {
+        console.log(error);
     }
 }
 
 
-export default function EditPost({params}) {
+export default async function EditPost({params}) {
     const {id} = params;
+    const {posts} = await getPostsById(id);
+    const {title, description} = posts;
+    
+    
 
     return (
-        <form className="flex flex-col gap-3">
-            <input className="border border-slate-500 rounded-lg px-8 py-2"
-            type="text"
-            placeholder="Post Title" 
-            />
 
-            <input className="border border-slate-500 rounded-lg px-8 py-2"
-            type="text"
-            placeholder="Post Description" 
-            />
-
-            <button className="bg-green-600 font-bold text-white w-fit px-6 py-3 rounded-lg mx-auto">Update Post</button>
-
-
-        </form>
+         <EditPostPage id = {id} title = {title} description = {description} /> 
+        
     );
 }
